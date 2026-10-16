@@ -1,0 +1,34 @@
+{
+  "name": "expense-tracker",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w @tracker/api\" \"npm run dev -w @tracker/web\"",
+    "build": "npm run build -w @tracker/api && npm run build -w @tracker/web",
+    "typecheck": "tsc -p apps/api/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "npm run test -w @tracker/api",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^22.0.0",
+    "concurrently": "^9.2.0",
+    "esbuild": "0.28.2",
+    "eslint": "^9.39.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.46.0"
+  },
+  "overrides": {
+    "esbuild": "$esbuild"
+  }
+}

@@ -1,0 +1,5 @@
+# Monitoring on Docker Desktop describes the Linux VM, not the Windows host.
+services:
+  node-exporter:
+    volumes:
+      - /:/host:ro
